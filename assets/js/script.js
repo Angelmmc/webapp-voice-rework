@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function () {
             // Configurar evento de resultado
             recognition.onresult = function (event) {
                 const result = event.results[0][0].transcript;
-                const keyword = "tamaño 3";
 
                 console.log('Orden identificada:', result);
 
@@ -30,8 +29,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         orderResultDiv.innerHTML = `<p>Orden identificada: <strong>${result}</strong></p>`;
                         window.open('https://www.facebook.com/');
                         break;
-                    case result.includes("keyword3"):
-                        // Código a ejecutar si result incluye la keyword3
+                    case result.includes("Abre nueva pestaña"):
+                        orderResultDiv.innerHTML = `<p>Orden identificada: <strong>${result}</strong></p>`;
+                        window.open('');
                         break;
                     default:
                         // Código a ejecutar si result no incluye ninguna de las keywords
