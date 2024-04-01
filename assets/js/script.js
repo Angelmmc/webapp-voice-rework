@@ -30,24 +30,45 @@ document.addEventListener('DOMContentLoaded', function () {
                     //Abre facebook al decir "Abre Facebook"
                     case result.includes("Abre Facebook"):
                         orderResultDiv.innerHTML = `<p>Orden identificada: <strong>${result}</strong></p>`;
+                        insertarJson("Abrir facebook");
                         window.open('https://www.facebook.com/');
                         break;
+
                     case result.includes("Abre nueva pestaña"):
                         orderResultDiv.innerHTML = `<p>Orden identificada: <strong>${result}</strong></p>`;
+                        insertarJson("Abrir pestaña en blanco");
                         window.open('');
                         break;
+
                     case result.includes("Cerrar pestaña actual"):
                         orderResultDiv.innerHTML = `<p>Orden identificada: <strong>${result}</strong></p>`;
-                        window.close();
+                        insertarJson("Cerrar pestaña actual").then(() => {
+                            window.close();
+                            console("dkfjdsfjklfdjlk");
+                        })
+                            .catch(error => {
+                                console.error('Error al insertar JSON:', error);
+                            });
+
+
                         break;
+
                     case result.includes("cerrar navegador"):
                         orderResultDiv.innerHTML = `<p>Orden identificada: <strong>${result}</strong></p>`;
-                        window.open('', '_self').close();
+                        insertarJson('navegador cerrado')
+                            .then(() => {
+                                window.open('', '_self').close();
+                                console("dkfjdsfjklfdjlk");
+                            })
+                            .catch(error => {
+                                console.error('Error al insertar JSON:', error);
+                            });
+
+
+
                         break;
-                    case result.includes("cerrar navegador"):
-                        orderResultDiv.innerHTML = `<p>Orden identificada: <strong>${result}</strong></p>`;
-                        window.open('', '_self').close();
-                        break;
+
+
                     default:
                         // Código a ejecutar si result no incluye ninguna de las keywords
                         break;
@@ -63,39 +84,41 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function insertarJson(accion) {
-        const fechaHoraActual = new Date();
-        const fechaHoraFormateada = fechaHoraActual.toLocaleString();
+        return new Promise((resolve, reject) => {
+            const fechaHoraActual = new Date();
+            const fechaHoraFormateada = fechaHoraActual.toLocaleString();
 
-        const recurso = {
-            id: 1,
-            accion: accion,
-            fecha: fechaHoraFormateada
-        };
+            const recurso = {
+                id: 1,
+                accion: accion,
+                fecha: fechaHoraFormateada
+            };
 
-        // Paso 2: Convertir a JSON
-        const recursoJSON = JSON.stringify(recurso);
+            // Paso 2: Convertir a JSON
+            const recursoJSON = JSON.stringify(recurso);
 
-        // Paso 3: Enviar la solicitud HTTP
-        fetch('https://660b0491ccda4cbc75dc4478.mockapi.io/accion', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: recursoJSON
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error al subir el recurso');
-                }
-                return response.json();
+            // Paso 3: Enviar la solicitud HTTP
+            fetch('https://660b0491ccda4cbc75dc4478.mockapi.io/accion', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: recursoJSON
             })
-            .then(data => {
-                console.log('Recurso subido exitosamente:', data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al subir el recurso');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Recurso subido exitosamente:', data);
+                    resolve(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    reject(error);
+                });
+        });
     }
-
-
 });
