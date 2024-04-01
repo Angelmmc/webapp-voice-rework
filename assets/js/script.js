@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 switch (true) {
                     case result.includes("tamaño 3"):
                         orderResultDiv.innerHTML = `<p>Orden identificada: <strong>${result}</strong></p>`;
+                        controlTexto.innerHTML = '<span class="fs-5 fw-bold fst-italic">Beto mi patrón</span>';
                         break;
                     case result.includes("keyword2"):
                         // Código a ejecutar si result incluye la keyword2
