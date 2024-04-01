@@ -17,16 +17,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 const result = event.results[0][0].transcript;
                 const keyword = "tamaño 3";
 
-                // console.log('Orden identificada:', result);
-                console.log(event);
+                console.log('Orden identificada:', result);
 
                 switch (true) {
-                    case result.includes("tamaño 3"):
+                    //Cambia el tamaño del texto al 5 de bootstrap al decir "tamaño 5"
+                    case result.includes("tamaño 5"):
                         orderResultDiv.innerHTML = `<p>Orden identificada: <strong>${result}</strong></p>`;
                         controlTexto.innerHTML = '<span class="fs-5 fw-bold fst-italic">Beto mi patrón</span>';
                         break;
-                    case result.includes("keyword2"):
-                        // Código a ejecutar si result incluye la keyword2
+                    //Abre facebook al decir "Abre Facebook"
+                    case result.includes("Abre Facebook"):
+                        orderResultDiv.innerHTML = `<p>Orden identificada: <strong>${result}</strong></p>`;
+                        window.open('https://www.facebook.com/');
                         break;
                     case result.includes("keyword3"):
                         // Código a ejecutar si result incluye la keyword3
