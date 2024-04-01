@@ -33,6 +33,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         orderResultDiv.innerHTML = `<p>Orden identificada: <strong>${result}</strong></p>`;
                         window.open('');
                         break;
+                    case result.includes("Cerrar pestaña actual"):
+                        orderResultDiv.innerHTML = `<p>Orden identificada: <strong>${result}</strong></p>`;
+                        window.close();
+                        break;
                     default:
                         // Código a ejecutar si result no incluye ninguna de las keywords
                         break;
