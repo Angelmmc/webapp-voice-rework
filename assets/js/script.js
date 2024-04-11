@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     //Cambia el tamaño del texto al 5 de bootstrap al decir "tamaño 5"
                     case result.includes("tamaño 5"):
                         orderResultDiv.innerHTML = `<p>Orden identificada: <strong>${result}</strong></p>`;
-                        controlTexto.innerHTML = '<span class="fs-5 fw-bold fst-italic">Beto mi patrón</span>';
+                        controlTexto.innerHTML = '<span class="fs-5 fw-bold fst-italic">Texto Modificable</span>';
                         //Metodo que inserta la acción realizada y fecha en MockApi
                         insertarJson("Cambiar tamaño de texto");
                         break;
