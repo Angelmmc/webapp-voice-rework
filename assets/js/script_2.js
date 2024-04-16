@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const result = event.results[0][0].transcript;
 
                 console.log('Orden identificada:', result);
+                result.toLowerCase();
 
                 switch (true) {
                     // Cambia el tamaño del texto al 5 de bootstrap al decir "tamaño 5"
@@ -28,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         break;
 
                     // Abre facebook al decir "Abre Facebook"
-                    case result.includes("Abre Facebook"):
+                    case result.includes("abrir Facebook"):
                         orderResultDiv.innerHTML = `<p>Orden identificada: <strong>${result}</strong></p>`;
                         insertarJson("Abrir facebook");
                         window.open('https://www.facebook.com/');
