@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Configurar evento de resultado
             recognition.onresult = function (event) {
-                const result = event.results[0][0].transcript;
+                const resultado = event.results[0][0].transcript;
 
                 console.log('Orden identificada:', result);
-                result.toLowerCase();
+                result = resultado.toLowerCase();
 
                 switch (true) {
                     // Cambia el tamaño del texto al 5 de bootstrap al decir "tamaño 5"
@@ -29,21 +29,21 @@ document.addEventListener('DOMContentLoaded', function () {
                         break;
 
                     // Abre facebook al decir "Abre Facebook"
-                    case result.includes("abrir Facebook"):
+                    case result.includes("abrir facebook"):
                         orderResultDiv.innerHTML = `<p>Orden identificada: <strong>${result}</strong></p>`;
                         insertarJson("Abrir facebook");
                         window.open('https://www.facebook.com/');
                         break;
 
                     // Abre una pestaña vacia en el navegador
-                    case result.includes("Abre nueva pestaña"):
+                    case result.includes("abre nueva pestaña"):
                         orderResultDiv.innerHTML = `<p>Orden identificada: <strong>${result}</strong></p>`;
                         insertarJson("Abrir pestaña en blanco");
                         window.open('');
                         break;
 
                     // Cierra la pestaña actual
-                    case result.includes("Cerrar pestaña actual"):
+                    case result.includes("cerrar pestaña actual"):
                         orderResultDiv.innerHTML = `<p>Orden identificada: <strong>${result}</strong></p>`;
                         // Operacion asincrona para insertar en Json ya que si no la ventana se cierra antes de insertar la informacion Json
                         insertarJson("Cerrar pestaña actual").then(() => {
