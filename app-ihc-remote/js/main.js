@@ -3,35 +3,34 @@ document.addEventListener('DOMContentLoaded', function () {
     var orden = document.getElementById("orden");
     var edit = document.getElementById("editable");
 
-    // Cambiar el contenido HTML del div utilizando innerHTML
-   
-    function main(){
-    getJson()
-        .then(data => {
-            console.log(data);
-             orden.innerHTML = data;
-             read(data);
-            
-        })
-        .catch(error => {
-            console.error('Error al obtener o procesar los datos:', error);
-        });
+    // Funcon que se repite cada 4 segundos para actualizar la informacion de la orden
+    // Se hace uso de la funcion getJson para obtener la informacion de MockApi
+
+    function main() {
+        getJson()
+            .then(data => {
+                //Si la promesa se cumple se imprime el valor obtenido en consola y en la pagina
+                console.log(data);
+                orden.innerHTML = data;
+                //Ejecucion de metodo que ejecuta la funcion basado en el texto proporcionado
+                read(data);
+
+            })
+            .catch(error => {
+                console.error('Error al obtener o procesar los datos:', error);
+            });
 
     }
 
-    //setInterval(main, 10000);
+    //Ejecucion del codigo main cada 4 segundos
+    setInterval(main, 4000);
 
-
-    // Funcion para guarda ordenes o acciones realizadas de acuerdo a la accion definida en el parametro
+    // Funcion para obtiene el valor del json
     function getJson() {
-        // La funcion trabaja con promesas para asegurar que los datos se inserten antes de que se realice la acción ya que si no
-        // al cerrar una ventana esto ocurrira antes de que se envien los datos a MockApi
+        // La funcion trabaja con promesas para asegurar que los datos se obtengan antes de ser usados
         return new Promise((resolve, reject) => {
-            // Definicion de la fecha actual formateandola al formato local de la PC
 
-            // Se crea un objeto que almacena la fecha obtenida y la accion del parametro
-
-            // Se envia la solicitud HTTP a MockAPi usando el metodo POST, cabecera que indica que es Json y el cuerpo del json del objeto
+            // Se envia la solicitud HTTP a MockAPi usando el metodo GET por defecto
             fetch('https://660b0491ccda4cbc75dc4478.mockapi.io/accion')
                 // Operacion asincrona en la que se espera a la respuesta de MockApi, si esta es invalida se indica que no se subio el archivo
                 .then(response => {
@@ -40,21 +39,20 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
 
                     return response.json();
-                    let dataArray
                 })
                 // Operacion asincrona en la que si la informacion se subio correctamente se devuelve a la consola y la promesa se resuelve
                 .then(data => {
-                    console.log('Recurso subido exitosamente:', data);
+                    //Si se obtiene la informacion se consulta el ultimo elemento del arreglo;
                     const ultimoRegistro = data[data.length - 1];
 
-                    hola =ultimoRegistro.accion;
+                    //Como es un arreglo indexado se obtiene el indice en esa posicion del arreglo
+                    accion = ultimoRegistro.accion;
 
-                    // Verificar si el último registro contiene el parámetro de texto deseado
-                        
-                    resolve(hola);
-                    return hola
+                    //Se devuelve el valor de la promesa una vez obtenida
+
+                    resolve(accion);
                 })
-                // Operacion asincrona en la que si la informacion no subio correctamente se devuelve un error en la consola y se rechaza la promesa
+                // Operacion asincrona en la que si la informacion no se obtubo de la promesa manda error
                 .catch(error => {
                     console.error('Error:', error);
                     reject(error);
@@ -62,11 +60,12 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    function read(result){
+    //Funcion que imita el comportamiento de las condiciones en el codigo principal
+    function read(result) {
         switch (true) {
             // Cambia el tamaño del texto al 5 de bootstrap al decir "tamaño 5"
             case result.includes("Cambiar tamaño de texto"):
-                edit.innerHTML= '<span class="fs-5 fw-bold fst-italic">Beto mi patrón</span>';
+                edit.innerHTML = '<span class="fs-5 fw-bold fst-italic">Beto mi patrón</span>)';
                 break;
 
             // Abre facebook al decir "Abre Facebook"
@@ -76,33 +75,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Abre una pestaña vacia en el navegador
             case result.includes("Abre nueva pestaña"):
-                orderResultDiv.innerHTML = `<p>Orden identificada: <strong>${result}</strong></p>`;
-                insertarJson("Abrir pestaña en blanco");
                 window.open('');
                 break;
 
             // Cierra la pestaña actual
             case result.includes("Cerrar pestaña actual"):
-                orderResultDiv.innerHTML = `<p>Orden identificada: <strong>${result}</strong></p>`;
                 // Operacion asincrona para insertar en Json ya que si no la ventana se cierra antes de insertar la informacion Json
-                insertarJson("Cerrar pestaña actual").then(() => {
-                    window.close();
-                })
-                .catch(error => {
-                    console.error('Error al insertar JSON:', error);
-                });
+                window.close();
+
                 break;
 
             case result.includes("cerrar navegador"):
-                orderResultDiv.innerHTML = `<p>Orden identificada: <strong>${result}</strong></p>`;
-                // Operacion asincrona para insertar en Json ya que si no la ventana se cierra antes de insertar la informacion Json
-                insertarJson('Cerrar navegador')
-                .then(() => {
-                    window.open('', '_self').close();
-                })
-                .catch(error => {
-                    console.error('Error al insertar JSON:', error);
-                });
+                window.open('', '_self').close();
                 break;
 
             default:

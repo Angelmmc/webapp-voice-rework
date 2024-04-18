@@ -16,8 +16,10 @@ document.addEventListener('DOMContentLoaded', function () {
             recognition.onresult = function (event) {
                 const resultado = event.results[0][0].transcript;
 
-                console.log('Orden identificada:', result);
                 result = resultado.toLowerCase();
+
+                console.log('Orden identificada:', result);
+
 
                 switch (true) {
                     // Cambia el tamaño del texto al 5 de bootstrap al decir "tamaño 5"
@@ -49,21 +51,21 @@ document.addEventListener('DOMContentLoaded', function () {
                         insertarJson("Cerrar pestaña actual").then(() => {
                             window.close();
                         })
-                        .catch(error => {
-                            console.error('Error al insertar JSON:', error);
-                        });
+                            .catch(error => {
+                                console.error('Error al insertar JSON:', error);
+                            });
                         break;
 
                     case result.includes("cerrar navegador"):
                         orderResultDiv.innerHTML = `<p>Orden identificada: <strong>${result}</strong></p>`;
                         // Operacion asincrona para insertar en Json ya que si no la ventana se cierra antes de insertar la informacion Json
                         insertarJson('Cerrar navegador')
-                        .then(() => {
-                            window.open('', '_self').close();
-                        })
-                        .catch(error => {
-                            console.error('Error al insertar JSON:', error);
-                        });
+                            .then(() => {
+                                window.open('', '_self').close();
+                            })
+                            .catch(error => {
+                                console.error('Error al insertar JSON:', error);
+                            });
                         break;
 
                     default:
@@ -84,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
     startRecognition();
 
     // Intervalo para reiniciar el reconocimiento de voz cada 10 segundos
-    setInterval(function() {
+    setInterval(function () {
         // Detener el reconocimiento de voz
         recognition.stop();
         // Reiniciar y volver a iniciar la escucha
@@ -118,23 +120,23 @@ document.addEventListener('DOMContentLoaded', function () {
                 },
                 body: recursoJSON
             })
-            // Operacion asincrona en la que se espera a la respuesta de MockApi, si esta es invalida se indica que no se subio el archivo
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error al subir el recurso');
-                }
-                return response.json();
-            })
-            // Operacion asincrona en la que si la informacion se subio correctamente se devuelve a la consola y la promesa se resuelve
-            .then(data => {
-                console.log('Recurso subido exitosamente:', data);
-                resolve(data);
-            })
-            // Operacion asincrona en la que si la informacion no subio correctamente se devuelve un error en la consola y se rechaza la promesa
-            .catch(error => {
-                console.error('Error:', error);
-                reject(error);
-            });
+                // Operacion asincrona en la que se espera a la respuesta de MockApi, si esta es invalida se indica que no se subio el archivo
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al subir el recurso');
+                    }
+                    return response.json();
+                })
+                // Operacion asincrona en la que si la informacion se subio correctamente se devuelve a la consola y la promesa se resuelve
+                .then(data => {
+                    console.log('Recurso subido exitosamente:', data);
+                    resolve(data);
+                })
+                // Operacion asincrona en la que si la informacion no subio correctamente se devuelve un error en la consola y se rechaza la promesa
+                .catch(error => {
+                    console.error('Error:', error);
+                    reject(error);
+                });
         });
     }
 });
