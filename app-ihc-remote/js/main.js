@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
         switch (true) {
             // Cambia el tamaño del texto al 5 de bootstrap al decir "tamaño 5"
             case result.includes("Cambiar tamaño de texto"):
-                edit.innerHTML = '<span class="fs-5 fw-bold fst-italic">Beto mi patrón</span>)';
+                edit.innerHTML = '<span class="fs-5 fw-bold fst-italic">Texto Cambiado</span>)';
                 break;
 
             // Abre facebook al decir "Abre Facebook"
