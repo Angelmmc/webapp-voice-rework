@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var orden = document.getElementById("orden");
     var edit = document.getElementById("editable");
 
+    var flag = 0;
     // Funcon que se repite cada 4 segundos para actualizar la informacion de la orden
     // Se hace uso de la funcion getJson para obtener la informacion de MockApi
 
@@ -65,30 +66,44 @@ document.addEventListener('DOMContentLoaded', function () {
         switch (true) {
             // Cambia el tamaño del texto al 5 de bootstrap al decir "tamaño 5"
             case result.includes("Cambiar tamaño de texto"):
-                
-                edit.innerHTML = '<span class="fs-5 fw-bold fst-italic">Texto editado</span>)';
+                if (flag != 1) {
 
+                    edit.innerHTML = '<span class="fs-5 fw-bold fst-italic">Texto editado</span>)';
+                    flag = 1;
+                }
                 break;
 
             // Abre facebook al decir "Abre Facebook"
             case result.includes("Abrir facebook"):
-                window.open('https://www.facebook.com/');
+                if (flag != 2) {
+                    window.open('https://www.facebook.com/');
+                    flag = 2;
+                }
                 break;
 
             // Abre una pestaña vacia en el navegador
             case result.includes("Abre nueva pestaña"):
-                window.open('');
+                if (flag != 3) {
+                    window.open('');
+                    flag = 3;
+                }
                 break;
 
             // Cierra la pestaña actual
             case result.includes("Cerrar pestaña actual"):
-                // Operacion asincrona para insertar en Json ya que si no la ventana se cierra antes de insertar la informacion Json
-                window.close();
-
+                if (flag != 4) {
+                    // Operacion asincrona para insertar en Json ya que si no la ventana se cierra antes de insertar la informacion Json
+                    window.close();
+                    flag = 4;
+                }
                 break;
 
             case result.includes("cerrar navegador"):
-                window.open('', '_self').close();
+                if (flag != 5) {
+                    window.open('', '_self').close();
+
+                    flag = 5;
+                }
                 break;
 
             default:
