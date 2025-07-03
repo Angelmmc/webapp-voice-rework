@@ -31,7 +31,7 @@ For example: *"Abrir Facebook"*
 
 ## Screenshot
 
-<img src="https://github.com/Angelmmc/webapp-voice-rework/blob/main/assets/img/main_page_monitoring.png" alt="App Screen" width="1000"/>
+<img src="https://github.com/Angelmmc/webapp-voice-rework/blob/master/assets/img/main_page_order.png" alt="App Screen" width="1000"/>
 
 ## License
 Distributed under the MIT License. See LICENSE for more information.
