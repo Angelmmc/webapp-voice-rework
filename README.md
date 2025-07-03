@@ -27,6 +27,8 @@ cd webapp-voice-rework
 
 1.  There is a list of predefined actions that the assistant can recognize. To ensure your command is understood, say it exactly as it is written in the list.
 
+For example: *"Abrir Facebook"*
+
 ## Screenshot
 
 <img src="https://github.com/Angelmmc/webapp-voice-rework/blob/main/assets/img/main_page_monitoring.png" alt="App Screen" width="1000"/>
