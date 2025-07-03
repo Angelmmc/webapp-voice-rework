@@ -1,14 +1,44 @@
-# web-app-voice-revenge
-> Esta aplicacion reconoce distintas ordenes por medio de voz y posteriormente inserta la información de la petición en una API en MockApi.
+# webapp-voice-rework
 
-Para usar la aplicación se necesita insertar alguno de los siguientes comandos:
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![GitHub Stars](https://img.shields.io/github/stars/Angelmmc/webapp-voice-rework.svg)](https://github.com/Angelmmc/webapp-voice-rework/stargazers)
+[![GitHub Issues](https://img.shields.io/github/issues/Angelmmc/webapp-voice-rework.svg)](https://github.com/Angelmmc/webapp-voice-rework/issues)
 
- - Tamaño 5 - Cambia el tamaño del texto inferior
-  - Abre Facebook - Abre la pagina de Facebook
-   - Abre nueva pestaña - Abre una pestaña en blanco
-    - Cerrar pestaña actual - Cierra la pestaña actual
-   - Cerrar Navegador - Cierra completamente el navegador
+## About 
+This app listens for voice commands, interprets them using speech recognition and natural language processing thanks to the [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API/Using_the_Web_Speech_API), and then sends the extracted information to a mock API. It simulates how a smart assistant would receive and process spoken instructions to trigger actions or update data in a backend system.
 
-La información puede comprobarse en la siguiente dirección.
+##  Getting Started
 
-https://660b0491ccda4cbc75dc4478.mockapi.io/accion
+###  Installation
+
+1. Clone the repository
+```bash
+git clone https://github.com/Angelmmc/webapp-voice-rework.git
+```
+2. Navigate to the project folder
+```bash
+cd webapp-voice-rework
+```
+3. Run the index.html file
+   
+## Usage
+
+> **Note:** Every command on this app only works in spanish.
+
+1.  There is a list of predefined actions that the assistant can recognize. To ensure your command is understood, say it exactly as it is written in the list.
+
+## Screenshot
+
+<img src="https://github.com/Angelmmc/webapp-voice-rework/blob/main/assets/img/main_page_monitoring.png" alt="App Screen" width="1000"/>
+
+## License
+Distributed under the MIT License. See LICENSE for more information.
+
+## Related
+
+This was a test for my smart assistant project, check out the related repositories.
+
+[![smart-assistant-voice](https://img.shields.io/badge/smart_assistant-voice-e48b01?logo=github)](https://github.com/Angelmmc/smart-assistant-voice)
+[![smart-assistant-monitoring](https://img.shields.io/badge/smart_assistant-monitoring-f55288?logo=github)](https://github.com/Angelmmc/smart-assistant-monitoring)
+
+
